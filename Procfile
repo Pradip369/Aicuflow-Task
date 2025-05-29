@@ -1,0 +1,1 @@
+web: gunicorn aicuflow_proj.wsgi
