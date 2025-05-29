@@ -7,12 +7,12 @@ from accounts.serializers import UserRegistrationSerializer, PatientUserProfileS
 User = get_user_model()
 
 class UserRegistrationView(generics.CreateAPIView):
-    """API view to handle user registration."""
+    """Generics view to handle user registration."""
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
-    """API view to retrieve and update the authenticated user's profile."""
+    """Generics view to retrieve and update the authenticated user's profile."""
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):

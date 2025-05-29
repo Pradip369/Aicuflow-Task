@@ -52,7 +52,7 @@ class HealthRecordViewSet(viewsets.ModelViewSet):
 
 class DoctorView(generics.ListAPIView):
     """
-    API view to list all doctors.
+    Generics view to list all doctors.
     """
     queryset = DoctorProfile.objects.all()
     serializer_class = DoctorProfileSerializer
