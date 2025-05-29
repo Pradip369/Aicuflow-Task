@@ -4,6 +4,7 @@ from accounts.models import PatientProfile, DoctorProfile
 from aicuflow_proj.global_config.base_models import TimeStampedModel
 
 class HealthRecord(TimeStampedModel):
+    """Model representing a patient's health record, including vitals, diagnosis, and related details."""
     patient = models.ForeignKey(PatientProfile, on_delete=models.CASCADE, related_name='patient_health_records')
     doctor = models.ForeignKey(DoctorProfile, on_delete=models.SET_NULL, null=True, related_name='doctor_health_records')
     visit_reason = models.CharField(max_length=255)
@@ -26,6 +27,7 @@ class HealthRecord(TimeStampedModel):
 
 
 class DoctorAnnotation(TimeStampedModel):
+    """Model for doctors' annotations on health records, including attachments."""
     record = models.ForeignKey(HealthRecord, on_delete=models.CASCADE, related_name='annotations')
     doctor = models.ForeignKey(DoctorProfile, on_delete=models.CASCADE)
     comment = models.TextField()

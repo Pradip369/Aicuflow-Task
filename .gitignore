@@ -50,3 +50,5 @@ env/
 
 # pip-tools
 *.txt~
+
+README.md

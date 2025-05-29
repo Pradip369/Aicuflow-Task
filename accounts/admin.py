@@ -4,6 +4,10 @@ from .models import User, PatientProfile, DoctorProfile
 
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
+    """
+    Custom admin configuration for the User model.
+    """
+
     list_display = ('username', 'email', 'role', 'first_name', 'last_name', 'is_staff', 'is_active')
     list_filter = ('role', 'is_staff', 'is_active')
     search_fields = ('username', 'email', 'first_name', 'last_name')
@@ -18,6 +22,10 @@ class UserAdmin(DjangoUserAdmin):
 
 @admin.register(PatientProfile)
 class PatientProfileAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for managing PatientProfile objects.
+    """
+
     list_display = ('user', 'phone_number', 'gender', 'date_of_birth')
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'phone_number')
     list_filter = ('gender',)
@@ -36,6 +44,10 @@ class PatientProfileAdmin(admin.ModelAdmin):
 
 @admin.register(DoctorProfile)
 class DoctorProfileAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for managing DoctorProfile objects.
+    """
+
     list_display = ('user', 'phone_number', 'gender', 'specialization', 'license_number', 'years_of_experience')
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'license_number', 'specialization')
     list_filter = ('gender', 'specialization')

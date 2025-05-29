@@ -5,17 +5,22 @@ from accounts.serializers import UserRegistrationSerializer, PatientUserProfileS
     DoctorUserProfileSerializer, UserSerializer
 
 User = get_user_model()
+
 class UserRegistrationView(generics.CreateAPIView):
+    """API view to handle user registration."""
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
+    """API view to retrieve and update the authenticated user's profile."""
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
+        """Returns the current authenticated user."""
         return self.request.user
 
     def get_serializer_class(self):
+        """Returns serializer class based on user's role."""
         user = self.get_object()
         if user.role == UserRoleChoices.PATIENT:
             return PatientUserProfileSerializer

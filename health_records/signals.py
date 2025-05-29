@@ -7,6 +7,7 @@ from notifications.choices import NotificationTitleChoices
 
 @receiver(post_save, sender=HealthRecord)
 def notify_doctor_on_new_record(sender, instance, created, **kwargs):
+    """Send notification and email to doctor when a new health record is created."""
     if created:
         Notification.objects.create(
             sender=instance.patient.user,
@@ -25,6 +26,7 @@ def notify_doctor_on_new_record(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=DoctorAnnotation)
 def notify_patient_on_doctor_annotation(sender, instance, created, **kwargs):
+    """Send notification and email to patient when doctor adds a new annotation."""
     if created:
         Notification.objects.create(
             sender=instance.doctor.user,

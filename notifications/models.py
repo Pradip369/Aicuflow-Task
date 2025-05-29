@@ -6,6 +6,10 @@ from notifications.choices import NotificationTitleChoices
 User = get_user_model()
 
 class Notification(TimeStampedModel):
+    """
+    Represents a notification sent from one user to another, including a title,
+    message, and read status.
+    """
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notification_sender')
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notification_receiver')
     title = models.CharField(max_length=255, choices=NotificationTitleChoices.choices)

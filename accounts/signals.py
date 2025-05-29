@@ -5,6 +5,7 @@ from .models import User, PatientProfile, DoctorProfile
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+    """Create a corresponding profile after a new User is created."""
     if created:
         if instance.role == UserRoleChoices.PATIENT:
             PatientProfile.objects.create(user=instance)
