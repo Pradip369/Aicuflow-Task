@@ -28,8 +28,10 @@ local_settings.py
 Thumbs.db
 
 # Migrations
-**/migrations/
-!*/migrations/__init__.py
+# Ignore all migration files
+**/migrations/*
+# But keep __init__.py files in migrations folders
+!**/migrations/__init__.py
 
 # Pytest
 .cache/
